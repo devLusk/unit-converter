@@ -15,12 +15,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material3.Button
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -37,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.unitconverter.ui.theme.UnitConverterTheme
+import com.example.unitconverter.utils.UnitDropdownMenu
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,76 +80,19 @@ fun UnitConverter(modifier: Modifier = Modifier) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
+                UnitDropdownMenu(
+                    expanded = isFromMenuExpanded,
+                    onExpand = { isFromMenuExpanded = true },
+                    onDismiss = { isFromMenuExpanded = false },
+                    modifier = Modifier.weight(1f)
+                )
 
-                Box(modifier = Modifier.weight(1f)) {
-                    Button(
-                        onClick = { isFromMenuExpanded = true },
-                        shape = RoundedCornerShape(8.dp),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text("Select")
-                        Icon(
-                            Icons.Default.ArrowDropDown,
-                            contentDescription = "drop arrow icon",
-                        )
-                    }
-
-                    DropdownMenu(
-                        expanded = isFromMenuExpanded,
-                        onDismissRequest = { isFromMenuExpanded = false }) {
-                        DropdownMenuItem(
-                            text = { Text("Centimeters") },
-                            onClick = {}
-                        )
-                        DropdownMenuItem(
-                            text = { Text("Meters") },
-                            onClick = {}
-                        )
-                        DropdownMenuItem(
-                            text = { Text("Feet") },
-                            onClick = {}
-                        )
-                        DropdownMenuItem(
-                            text = { Text("Milimeters") },
-                            onClick = {}
-                        )
-                    }
-                }
-
-                Box(modifier = Modifier.weight(1f)) {
-                    Button(
-                        onClick = { isToMenuExpanded = true },
-                        shape = RoundedCornerShape(8.dp),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text("Select")
-                        Icon(
-                            Icons.Default.ArrowDropDown,
-                            contentDescription = "drop arrow icon",
-                        )
-                    }
-
-                    DropdownMenu(
-                        expanded = isToMenuExpanded,
-                        onDismissRequest = { isToMenuExpanded = false }) {
-                        DropdownMenuItem(
-                            text = { Text("Centimeters") },
-                            onClick = {}
-                        )
-                        DropdownMenuItem(
-                            text = { Text("Meters") },
-                            onClick = {}
-                        )
-                        DropdownMenuItem(
-                            text = { Text("Feet") },
-                            onClick = {}
-                        )
-                        DropdownMenuItem(
-                            text = { Text("Milimeters") },
-                            onClick = {}
-                        )
-                    }
-                }
+                UnitDropdownMenu(
+                    expanded = isToMenuExpanded,
+                    onExpand = { isToMenuExpanded = true },
+                    onDismiss = { isToMenuExpanded = false },
+                    modifier = Modifier.weight(1f)
+                )
             }
 
             Spacer(modifier = Modifier.height(24.dp))
