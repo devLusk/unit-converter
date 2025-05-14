@@ -19,6 +19,8 @@ fun UnitDropdownMenu(
     expanded: Boolean,
     onExpand: () -> Unit,
     onDismiss: () -> Unit,
+    mainValue: String,
+    onUnitSelected: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier) {
@@ -27,7 +29,7 @@ fun UnitDropdownMenu(
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Select")
+            Text(mainValue)
             Icon(Icons.Default.ArrowDropDown, contentDescription = "drop arrow icon")
         }
 
@@ -36,7 +38,13 @@ fun UnitDropdownMenu(
             onDismissRequest = onDismiss
         ) {
             listOf("Centimeters", "Meters", "Feet", "Milimeters").forEach {
-                DropdownMenuItem(text = { Text(it) }, onClick = {})
+                DropdownMenuItem(
+                    text = { Text(it) },
+                    onClick = {
+                        onUnitSelected(it)
+                        onDismiss()
+                    }
+                )
             }
         }
     }

@@ -45,6 +45,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun UnitConverter(modifier: Modifier = Modifier) {
     var inputValue by remember { mutableStateOf("") }
+
+    var inputUnit by remember { mutableStateOf("Centimeters") }
+    var outputUnit by remember { mutableStateOf("Meters") }
+
     var isFromMenuExpanded by remember { mutableStateOf(false) }
     var isToMenuExpanded by remember { mutableStateOf(false) }
 
@@ -80,6 +84,8 @@ fun UnitConverter(modifier: Modifier = Modifier) {
                     expanded = isFromMenuExpanded,
                     onExpand = { isFromMenuExpanded = true },
                     onDismiss = { isFromMenuExpanded = false },
+                    mainValue = inputUnit,
+                    onUnitSelected = {inputUnit = it},
                     modifier = Modifier.weight(1f)
                 )
 
@@ -87,13 +93,19 @@ fun UnitConverter(modifier: Modifier = Modifier) {
                     expanded = isToMenuExpanded,
                     onExpand = { isToMenuExpanded = true },
                     onDismiss = { isToMenuExpanded = false },
+                    mainValue = outputUnit,
+                    onUnitSelected = {outputUnit = it},
                     modifier = Modifier.weight(1f)
                 )
             }
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            ResultField()
+            ResultField(
+                inputValue = inputValue,
+                inputUnit = inputUnit,
+                outputUnit = outputUnit
+            )
         }
     }
 }
