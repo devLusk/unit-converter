@@ -85,7 +85,7 @@ fun UnitConverter(modifier: Modifier = Modifier) {
                     onExpand = { isFromMenuExpanded = true },
                     onDismiss = { isFromMenuExpanded = false },
                     mainValue = inputUnit,
-                    onUnitSelected = {inputUnit = it},
+                    onUnitSelected = { inputUnit = it },
                     modifier = Modifier.weight(1f)
                 )
 
@@ -94,7 +94,7 @@ fun UnitConverter(modifier: Modifier = Modifier) {
                     onExpand = { isToMenuExpanded = true },
                     onDismiss = { isToMenuExpanded = false },
                     mainValue = outputUnit,
-                    onUnitSelected = {outputUnit = it},
+                    onUnitSelected = { outputUnit = it },
                     modifier = Modifier.weight(1f)
                 )
             }

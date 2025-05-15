@@ -37,7 +37,7 @@ fun UnitDropdownMenu(
             expanded = expanded,
             onDismissRequest = onDismiss
         ) {
-            listOf("Centimeters", "Meters", "Feet", "Milimeters").forEach {
+            listOf("Centimeters", "Meters", "Feet", "Millimeters").forEach {
                 DropdownMenuItem(
                     text = { Text(it) },
                     onClick = {
